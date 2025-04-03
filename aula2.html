@@ -3,113 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1</title>
+    <title>Aula 2</title>
     <style>
-        body{
-            display: flex;
-            justify-content: center;
-            background-image: url("https://th.bing.com/th/id/OIP.CPXR5dxoZEL2eOKq0ctkrgHaIL?rs=1&pid=ImgDetMain");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        h1 {
-            color: white;
-            background-color: pink;
-        }
+
     </style>
-</head>
-
 <body>
-    <audio id="musga3">
-        <source src="musga.mp3">    
-    </audio>
-    <div>
-        <h1>Toca-Solos v1</h1>
-    <button id="tocar">TOCAR</button>
-    <button id="pausar">PAUSAR</button>
-    <button id="pular">PULAR</button>
-    <button id="terminar">TERMINAR</button>
-    <button id="recomecar">RECOMEÇAR</button>
-    <button id="trocar">TROCAR</button>
-    <button id="silenciar">SILENCIAR</button>
-    <button id="dessilenciar">DESSILENCIAR</button>
-    <button id="acelerar">ACELERAR</button>
-    <button id="desacelerar">DESACELERAR</button>
-    <button id="duracao">DURAÇÃO</button>
-    <button id="verificar">VERIFICAR</button>
-    <button id="controles">CONTROLES</button>
-    </div>
+    <video id="kachuga" src="kachuga.mp4" width="320" height="240" type="video/mp4" poster="chickhicks.jpg" controls>
+        <track default kind="captions" srclang="en" src="kachugadub.vtt"></track>
+    </video><br>
+    <button id="checar">Checar</button>
+    <button id="aumentar">Aumentar</button>
+    <button id="normalizar">Normalizar</button>
+    <button id="atributos">Atributos</button>
+    <button id="trocarposter">Trocar poster</button>
+
     <script>
-        var bool = 1;
-
-        tocar.onclick = function() {
-            musga3.play();
+        let bool = 1;
+        checar.onclick = function() {
+            alert(kachuga.canPlayType("video/ogg"));
         }
-        pausar.onclick = function() {
-            musga3.pause();
+        aumentar.onclick = function() {
+            kachuga.width = 2048;
+            kachuga.height = 1024;
         }
-        pular.onclick = function() {
-            musga3.currentTime = musga3.currentTime + 5;
-            console.log(musga3.seeking);
+        normalizar.onclick = function () {
+            kachuga.width = 320;
+            kachuga.height = 240;
         }
-        silenciar.onclick = function() {
-            musga3.muted = true;
+        atributos.onclick = function() {
+        alert(kachuga.currentSrc);
+        alert(kachuga.controls);
+        alert(kachuga.autoplay);
+        alert(kachuga.loop);
+        alert(kachuga.poster);
+        alert(kachuga.id);
+        alert(kachuga.width);
+        alert(kachuga.height);
         }
-
-        dessilenciar.onclick = function(){
-            musga3.muted = false;
+        trocarposter.onclick = function () {
+        if (bool === 1) {
+        kachuga.poster = "hickchicks.jpg";
+        bool = 2;
+        } else if (bool === 2) {
+        kachuga.poster = "chickhicks.jpg";
+        bool = 1;
         }
-        acelerar.onclick = function() {
-            musga3.playbackRate = 2.0;
         }
-        desacelerar.onclick = function() {
-            musga3.playbackRate = 0.75;
+        kachuga.paused = function () {
+            alert("Vídeo Pausado");
         }
-        duracao.onclick = function() {
-            var duracao = (musga3.duration/60).toFixed(2);
-            alert(duracao);
+        kachuga.onended = function () {
+            alert("Vídeo Finalizado");
         }
-        recomecar.onclick = function() {
-            musga3.currentTime = 1;
-        }
-        terminar.onclick = function() {
-            musga3.currentTime = musga3.duration - 1;
-        }
-        trocar.onclick = function () {
-            if(bool === 1) {
-            musga3.src = "musga2.mp3";
-            musga3.load();
-            musga3.play();
-            bool = 2;
-          }
-          else if (bool === 2) {
-            musga3.src = "musga.mp3";
-            musga3.load();
-            musga3.play();
-            bool = 1;
-          }
-        }
-        verificar.onclick = function() {
-            console.log(musga3.readyState);
-        }
-        controles.onclick = function() {
-            var musga = musga3;
-            if (musga.hasAttribute("controls")) {
-                musga.removeAttribute("controls");
-            } else {
-                musga.setAttribute("controls", "controls");
-            }
-        }
-        // trocar musica quando acabar
-        musga3.onended = function() {
-            alert("A música encerrou");
-            musga3.src = "musga2.mp3";
-            musga3.load();
-            musga3.play();
-            //para trocar automaticamente seria com manipulação de arquivos e um array com as musicas
-        };
-        // git init 
-        // git remote add chave + @ + link
     </script>
 </body>
 </html>
